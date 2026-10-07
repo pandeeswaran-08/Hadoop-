@@ -1,0 +1,205 @@
+/* Pure Black & White Monochromatic Academic Theme */
+
+:root {
+  --font-serif: "Times New Roman", Times, "Baskerville", Georgia, serif;
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #141414;
+  --card-bg: rgba(12, 12, 12, 0.85);
+  --card-border: rgba(255, 255, 255, 0.16);
+  --card-border-hover: rgba(255, 255, 255, 0.8);
+  --text-main: #ffffff;
+  --text-muted: #a3a3a3;
+  --accent-white: #ffffff;
+  --accent-gray: #737373;
+  --accent-glow: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #e5e5e5;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: rgba(0, 0, 0, 0.15);
+  --card-border-hover: rgba(0, 0, 0, 0.8);
+  --text-main: #000000;
+  --text-muted: #525252;
+  --accent-white: #000000;
+  --accent-gray: #737373;
+  --accent-glow: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+/* Monochromatic Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+/* Black & White Glassmorphism */
+.glass-panel {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.glass-panel:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 25px 50px -15px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* 3D Tilt Card Base with Specular Glare */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease-out;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  z-index: 10;
+}
+
+.tilt-card:hover .tilt-glare {
+  opacity: 1;
+}
+
+/* 3D Isometric Exploded Stack */
+.iso-container {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.iso-stack {
+  transform: rotateX(54deg) rotateZ(-34deg);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+.iso-layer {
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.7s ease;
+  transform-style: preserve-3d;
+}
+
+.iso-exploded .iso-layer-4 {
+  transform: translateZ(190px);
+  box-shadow: 0 30px 60px rgba(255, 255, 255, 0.2);
+}
+.iso-exploded .iso-layer-3 {
+  transform: translateZ(130px);
+  box-shadow: 0 25px 50px rgba(255, 255, 255, 0.18);
+}
+.iso-exploded .iso-layer-2 {
+  transform: translateZ(70px);
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15);
+}
+.iso-exploded .iso-layer-1 {
+  transform: translateZ(10px);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.12);
+}
+
+.bg-grid-pattern {
+  background-size: 52px 52px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="light"] .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+.flow-dash {
+  stroke-dasharray: 8 6;
+  animation: dashMove 1.2s linear infinite;
+  filter: drop-shadow(0 0 3px #ffffff);
+}
+
+@keyframes dashMove {
+  from { stroke-dashoffset: 28; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 5px #ffffff); }
+}
+
+.led-active {
+  animation: ledPulse 1.4s infinite ease-in-out;
+}
+
+.wc-step-badge.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  transform: scale(1.06);
+}
+
+/* Hero Monochromatic Sheen & Specular Effects */
+@keyframes sheenSweep {
+  0% { transform: translateX(-150%) rotate(25deg); }
+  50%, 100% { transform: translateX(250%) rotate(25deg); }
+}
+
+.sheen-active {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen-active::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.18) 50%, transparent 60%);
+  animation: sheenSweep 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
